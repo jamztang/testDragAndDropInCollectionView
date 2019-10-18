@@ -18,7 +18,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
 
-//        collectionView.dragInteractionEnabled = true
+        collectionView.dragInteractionEnabled = true
         collectionView.dragDelegate = self
         collectionView.dropDelegate = self
     }
@@ -104,6 +104,20 @@ extension ViewController: UICollectionViewDropDelegate {
         } else {
             Swift.print("move item forbidden")
         }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, canHandle session: UIDropSession) -> Bool {
+        Swift.print("canHandle session")
+        return true
+    }
+    func collectionView(_ collectionView: UICollectionView, dropSessionDidEnter session: UIDropSession) {
+        Swift.print("dropSessionDidEnter")
+    }
+    func collectionView(_ collectionView: UICollectionView, dropSessionDidExit session: UIDropSession) {
+        Swift.print("dropSessionDidExit")
+    }
+    func collectionView(_ collectionView: UICollectionView, dropSessionDidEnd session: UIDropSession) {
+        Swift.print("dropSessionDidEnd")
     }
 
 }
