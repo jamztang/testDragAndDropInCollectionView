@@ -34,5 +34,11 @@ extension ViewController: UICollectionViewDataSource {
         return cell
     }
 
+}
 
+extension ViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let item = items[indexPath.item]
+        Swift.print("DDD didSelectItem \(item)")
+    }
 }
