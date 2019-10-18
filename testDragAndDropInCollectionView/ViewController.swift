@@ -56,8 +56,16 @@ extension ViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UICollectionViewDropProposal {
 
         if collectionView.hasActiveDrag {
-            return .init(operation: .move, intent: .insertAtDestinationIndexPath)
+            Swift.print(".move \(String(describing: destinationIndexPath))")
+
+            if destinationIndexPath != nil {
+                return .init(operation: .move, intent: .insertAtDestinationIndexPath)
+            } else {
+                // important!! this fixes the issue that after internal drag failed, the next drag and drop will perform incorrectly
+                return .init(operation: .move, intent: .unspecified)
+            }
         }
+        Swift.print(".forbidden \(String(describing: destinationIndexPath))")
         return .init(operation: .forbidden)
     }
 
