@@ -21,7 +21,6 @@ class ViewController: UIViewController {
 //        collectionView.dragInteractionEnabled = true
         collectionView.dragDelegate = self
         collectionView.dropDelegate = self
-        collectionView.allowsSelection = false
     }
 
     func moveItem(from: IndexPath, to: IndexPath) {
