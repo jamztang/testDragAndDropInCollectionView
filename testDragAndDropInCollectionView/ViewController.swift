@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController {
 
     let items: [String] = (0...30).map { "\($0)" }
+    @IBOutlet weak var collectionView: UICollectionView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
