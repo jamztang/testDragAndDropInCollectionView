@@ -34,6 +34,13 @@ class ViewController: UIViewController {
         print("items \(items)")
     }
 
+    func addItem(_ item: String, to: IndexPath) {
+        collectionView.performBatchUpdates({
+            items.insert(item, at: to.item)
+            collectionView.insertItems(at: [to])
+        }, completion: nil)
+    }
+
 }
 
 extension ViewController: UICollectionViewDataSource {
@@ -63,6 +70,15 @@ extension ViewController: UICollectionViewDelegate {
             } else {
                 // important!! this fixes the issue that after internal drag failed, the next drag and drop will perform incorrectly
                 return .init(operation: .move, intent: .unspecified)
+            }
+        } else {
+            Swift.print(".copy \(String(describing: destinationIndexPath))")
+            // dragging from outside
+            if destinationIndexPath != nil {
+                return .init(operation: .copy, intent: .insertAtDestinationIndexPath)
+            } else {
+                // important!! this fixes the issue that after internal drag failed, the next drag and drop will perform incorrectly
+                return .init(operation: .copy, intent: .unspecified)
             }
         }
         Swift.print(".forbidden \(String(describing: destinationIndexPath))")
@@ -98,11 +114,25 @@ extension ViewController: UICollectionViewDropDelegate {
         let destinationIndexPath = coordinator.destinationIndexPath ?? IndexPath(item: items.count - 1, section: 0)
 
         if coordinator.proposal.operation == .move {
-            Swift.print("move item for \(destinationIndexPath)")
-
+            Swift.print("performDrop .move to \(destinationIndexPath)")
             moveItem(from: sourceIndexPaths.first!, to: destinationIndexPath)
+        } else if coordinator.proposal.operation == .copy {
+            Swift.print("performDrop .copy to \(items) \(destinationIndexPath)")
+
+            coordinator.items.map { $0.dragItem.itemProvider }.forEach { (itemProvider) in
+                itemProvider.loadObject(ofClass: NSString.self) { (item, error) in
+                    guard let string = item as? String else {
+                        Swift.print("performDrop failed to load item \(item) to string \(error)")
+                        return
+                    }
+                    DispatchQueue.main.async {
+                        self.addItem(string, to: destinationIndexPath)
+                        Swift.print("performDrop loadItem success: \(string)")
+                    }
+                }
+            }
         } else {
-            Swift.print("move item forbidden")
+            Swift.print("performDrop \(coordinator.proposal.operation)")
         }
     }
 
