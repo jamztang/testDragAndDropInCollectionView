@@ -15,6 +15,7 @@
 		1AAD935123599EEE0064C909 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AAD934F23599EEE0064C909 /* LaunchScreen.storyboard */; };
 		1AAD935C23599EEE0064C909 /* testDragAndDropInCollectionViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAD935B23599EEE0064C909 /* testDragAndDropInCollectionViewTests.swift */; };
 		1AAD936723599EEE0064C909 /* testDragAndDropInCollectionViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAD936623599EEE0064C909 /* testDragAndDropInCollectionViewUITests.swift */; };
+		1AAD937523599F990064C909 /* TextCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAD937423599F990064C909 /* TextCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,8 @@
 		1AAD936223599EEE0064C909 /* testDragAndDropInCollectionViewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = testDragAndDropInCollectionViewUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AAD936623599EEE0064C909 /* testDragAndDropInCollectionViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testDragAndDropInCollectionViewUITests.swift; sourceTree = "<group>"; };
 		1AAD936823599EEE0064C909 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1AAD937423599F990064C909 /* TextCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCollectionViewCell.swift; sourceTree = "<group>"; };
+		1AAD93762359A1090064C909 /* testDragAndDropInCollectionView.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = testDragAndDropInCollectionView.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,10 +102,12 @@
 		1AAD934323599EED0064C909 /* testDragAndDropInCollectionView */ = {
 			isa = PBXGroup;
 			children = (
+				1AAD93762359A1090064C909 /* testDragAndDropInCollectionView.entitlements */,
 				1AAD934423599EED0064C909 /* AppDelegate.swift */,
 				1AAD934623599EED0064C909 /* SceneDelegate.swift */,
 				1AAD934823599EED0064C909 /* ViewController.swift */,
 				1AAD934A23599EED0064C909 /* Main.storyboard */,
+				1AAD937423599F990064C909 /* TextCollectionViewCell.swift */,
 				1AAD934D23599EEE0064C909 /* Assets.xcassets */,
 				1AAD934F23599EEE0064C909 /* LaunchScreen.storyboard */,
 				1AAD935223599EEE0064C909 /* Info.plist */,
@@ -262,6 +267,7 @@
 				1AAD934923599EED0064C909 /* ViewController.swift in Sources */,
 				1AAD934523599EED0064C909 /* AppDelegate.swift in Sources */,
 				1AAD934723599EED0064C909 /* SceneDelegate.swift in Sources */,
+				1AAD937523599F990064C909 /* TextCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,7 +440,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = testDragAndDropInCollectionView/testDragAndDropInCollectionView.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 5UAR78B6YU;
 				INFOPLIST_FILE = testDragAndDropInCollectionView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -443,6 +451,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.goodnotes.testDragAndDropInCollectionView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -452,7 +461,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = testDragAndDropInCollectionView/testDragAndDropInCollectionView.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 5UAR78B6YU;
 				INFOPLIST_FILE = testDragAndDropInCollectionView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -461,6 +472,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.goodnotes.testDragAndDropInCollectionView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
