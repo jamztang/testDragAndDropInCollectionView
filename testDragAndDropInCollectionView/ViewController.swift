@@ -113,9 +113,12 @@ extension ViewController: UICollectionViewDropDelegate {
         }
         let destinationIndexPath = coordinator.destinationIndexPath ?? IndexPath(item: items.count - 1, section: 0)
 
-        if coordinator.proposal.operation == .move {
+        if coordinator.proposal.operation == .move, let dragItem = coordinator.items.first?.dragItem {
             Swift.print("performDrop .move to \(destinationIndexPath)")
             moveItem(from: sourceIndexPaths.first!, to: destinationIndexPath)
+
+            // show animation when releasing the drag session
+            coordinator.drop(dragItem, toItemAt: destinationIndexPath)
         } else if coordinator.proposal.operation == .copy {
             Swift.print("performDrop .copy to \(items) \(destinationIndexPath)")
 
@@ -141,13 +144,13 @@ extension ViewController: UICollectionViewDropDelegate {
         return true
     }
     func collectionView(_ collectionView: UICollectionView, dropSessionDidEnter session: UIDropSession) {
-        Swift.print("dropSessionDidEnter")
+        Swift.print("dropSessionDidEnter \(collectionView.hasActiveDrag) \(collectionView.hasActiveDrop)")
     }
     func collectionView(_ collectionView: UICollectionView, dropSessionDidExit session: UIDropSession) {
-        Swift.print("dropSessionDidExit")
+        Swift.print("dropSessionDidExit \(collectionView.hasUncommittedUpdates)")
     }
     func collectionView(_ collectionView: UICollectionView, dropSessionDidEnd session: UIDropSession) {
-        Swift.print("dropSessionDidEnd")
+        Swift.print("dropSessionDidEnd \(collectionView.hasUncommittedUpdates)")
     }
 
 }
